@@ -2,10 +2,10 @@
 #define ARRAY_STACK_H
 
 
-static const int MIN_CAPACITY = 8;
 
 template <typename T>
 class ArrayStack{
+    static const int MIN_CAPACITY = 8;
     T* m_arr;
     int m_size;
     int m_capacity;

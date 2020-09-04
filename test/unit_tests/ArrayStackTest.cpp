@@ -5,7 +5,7 @@ TEST_CASE("Stack resizes automatically as values are added and removed", "[array
     ArrayStack<int> a;
 
     REQUIRE(a.size() == 0);
-    REQUIRE(a.capacity() == MIN_CAPACITY);
+    int MIN_CAPACITY = a.capacity();
 
     SECTION("stack does not resize before capacity is reached") {
         for (int i = 0; i < MIN_CAPACITY - 1; i++) {
