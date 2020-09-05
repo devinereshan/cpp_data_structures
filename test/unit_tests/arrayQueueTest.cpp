@@ -29,4 +29,35 @@ TEST_CASE("Queue maintains order through multiple enqueue and dequeue operations
             REQUIRE(a.dequeue() == i);
     }
 
+    SECTION("peek returns expected value") {
+        a.enqueue(10);
+        a.enqueue(9);
+        a.enqueue(8);
+        a.enqueue(7);
+
+        REQUIRE(a.peek() == 10);
+        a.dequeue();
+        REQUIRE(a.peek() == 9);
+    }
+
+    SECTION("queue maintains functionality through successive alternate enqueue/dequeue operations") {
+        a.enqueue(0);
+        for (int i = 1; i < 33; i++) {
+            a.enqueue(i);
+            REQUIRE(a.dequeue() == i - 1);
+            REQUIRE(a.size() == 1);
+        }
+    }
+
+    SECTION("queue reports correct size") {
+        for (int i = 0; i < 10; i++)
+            a.enqueue(i);
+
+        REQUIRE(a.size() == 10);
+
+        for (int i = 0; i < 7; i++)
+            a.dequeue();
+
+        REQUIRE(a.size() == 3);
+    }
 }
