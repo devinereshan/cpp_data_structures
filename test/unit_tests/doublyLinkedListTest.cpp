@@ -1,5 +1,6 @@
 #include "../catch.hpp"
 #include "../../DoublyLinkedList.h"
+#include <iostream>
 
 TEST_CASE("Class methods exhibit appropriate behaviour", "[doublylinkedlist]") {
     DoublyLinkedList<int> d;
@@ -37,6 +38,18 @@ TEST_CASE("Class methods exhibit appropriate behaviour", "[doublylinkedlist]") {
 
         d.remove(0);
         REQUIRE(d.size() == 6);
+    }
+
+    SECTION("Can set values") {
+        for (int i = 0; i < 10; i++)
+            d.add(i, i);
+
+        REQUIRE(d.get(0) == 0);
+        d.set(20, 0);
+        REQUIRE(d.get(0) == 20);
+        REQUIRE(d.get(1) == 1);
+        d.set(21, 1);
+        REQUIRE(d.get(1) == 21);
     }
 
     SECTION("Can set values without changing size") {
